@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Font/bahnscrift.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/UserInterface/Settings/Settings.gd" type="Script" id=2]
+[ext_resource path="res://assets/Background/Background.png" type="Texture" id=3]
+[ext_resource path="res://assets/Education/PaperBackground.png" type="Texture" id=4]
+[ext_resource path="res://assets/UserInterface/Button/KembaliBtn.png" type="Texture" id=5]
+[ext_resource path="res://assets/UserInterface/Button/Simpan.png" type="Texture" id=6]
+[ext_resource path="res://assets/Education/Header2.png" type="Texture" id=7]
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -119.0
+margin_top = 21.1893
+margin_right = 119.0
+margin_bottom = 92.1893
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Paper" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -306.5
+margin_top = -179.464
+margin_right = 306.5
+margin_bottom = 243.536
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Paper"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -79.3175
+margin_right = 200.0
+margin_bottom = -1.3175
+rect_min_size = Vector2( 400, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContainerSensi" type="HBoxContainer" parent="Background/Paper/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 33.0
+
+[node name="Label" type="Label" parent="Background/Paper/VBoxContainer/ContainerSensi"]
+margin_right = 246.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Sensitifitas"
+
+[node name="HSlider" type="HSlider" parent="Background/Paper/VBoxContainer/ContainerSensi"]
+margin_left = 250.0
+margin_top = 8.0
+margin_right = 400.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="ContainerSound" type="HBoxContainer" parent="Background/Paper/VBoxContainer"]
+margin_top = 37.0
+margin_right = 400.0
+margin_bottom = 78.0
+
+[node name="Label" type="Label" parent="Background/Paper/VBoxContainer/ContainerSound"]
+margin_top = 4.0
+margin_right = 327.0
+margin_bottom = 37.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Suara"
+
+[node name="CheckBox" type="CheckBox" parent="Background/Paper/VBoxContainer/ContainerSound"]
+margin_left = 331.0
+margin_right = 400.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 1 )
+text = "Off"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/Paper"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -130.617
+margin_right = 200.0
+margin_bottom = -76.6173
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="TextureButton" parent="Background/Paper/HBoxContainer"]
+margin_right = 267.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 5 )
+
+[node name="Apply" type="TextureButton" parent="Background/Paper/HBoxContainer"]
+margin_left = 271.0
+margin_right = 400.0
+margin_bottom = 54.0
+texture_normal = ExtResource( 6 )
+
+[connection signal="pressed" from="Background/Paper/VBoxContainer/ContainerSound/CheckBox" to="." method="_on_CheckBox_pressed"]
+[connection signal="pressed" from="Background/Paper/HBoxContainer/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Background/Paper/HBoxContainer/Apply" to="." method="_on_Apply_pressed"]

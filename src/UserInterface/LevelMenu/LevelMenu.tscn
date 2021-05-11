@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/UserInterface/LevelMenu/LevelMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/Background/LevelMenuBackground.png" type="Texture" id=2]
+[ext_resource path="res://assets/UserInterface/LevelMenu/LevelHeader.png" type="Texture" id=3]
+[ext_resource path="res://assets/UserInterface/LevelMenu/Level 1 Icon.png" type="Texture" id=4]
+[ext_resource path="res://assets/Font/bahnscrift.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/UserInterface/LevelMenu/Level 2 Icon.png" type="Texture" id=6]
+[ext_resource path="res://assets/UserInterface/LevelMenu/Level 3 Icon.png" type="Texture" id=7]
+
+[node name="LevelMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Header" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -206.5
+margin_top = 23.893
+margin_right = 206.5
+margin_bottom = 108.893
+texture = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -342.5
+margin_top = -80.0
+margin_right = 342.5
+margin_bottom = 117.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/HBoxContainer"]
+margin_right = 228.0
+margin_bottom = 197.0
+
+[node name="BtnLevel1" type="TextureButton" parent="Background/HBoxContainer/VBoxContainer"]
+margin_right = 228.0
+margin_bottom = 160.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 228.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 5 )
+text = "Level 1"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Background/HBoxContainer"]
+margin_left = 232.0
+margin_right = 454.0
+margin_bottom = 197.0
+
+[node name="BtnLevel2" type="TextureButton" parent="Background/HBoxContainer/VBoxContainer2"]
+margin_right = 222.0
+margin_bottom = 160.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/VBoxContainer2"]
+margin_top = 164.0
+margin_right = 222.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 5 )
+text = "Level 2"
+align = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Background/HBoxContainer"]
+margin_left = 458.0
+margin_right = 685.0
+margin_bottom = 197.0
+
+[node name="BtnLevel3" type="TextureButton" parent="Background/HBoxContainer/VBoxContainer3"]
+margin_right = 227.0
+margin_bottom = 160.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/VBoxContainer3"]
+margin_top = 164.0
+margin_right = 227.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 5 )
+text = "Level 3"
+align = 1
+
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer/BtnLevel1" to="." method="_on_BtnLevel1_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer2/BtnLevel2" to="." method="_on_BtnLevel2_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer3/BtnLevel3" to="." method="_on_BtnLevel3_pressed"]

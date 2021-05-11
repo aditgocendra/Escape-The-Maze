@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/WalkRobot.wav-89c65d934a4dd24ed317aeeeb0115fbd.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/WalkRobot.wav"
+dest_files=[ "res://.import/WalkRobot.wav-89c65d934a4dd24ed317aeeeb0115fbd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
