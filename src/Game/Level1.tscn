@@ -36,7 +36,7 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.82874, 1.69032, -4.76321 )
 
 [node name="Enemy" parent="Gridmap" instance=ExtResource( 5 )]
-transform = Transform( -0.409706, 0, 0.687125, 0, 0.8, 0, -0.687125, 0, -0.409706, 35.62, 0.5, -35.252 )
+transform = Transform( -0.409706, 0, 0.687125, 0, 0.8, 0, -0.687125, 0, -0.409706, 35.62, 0.5, -33.3076 )
 
 [node name="GroupObject" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.48628 )

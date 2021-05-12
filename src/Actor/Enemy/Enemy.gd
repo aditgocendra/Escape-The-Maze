@@ -6,7 +6,6 @@ const speed = 5.0
 var target = null
 var velocity = Vector3.ZERO
 
-
 var path = []
 
 
@@ -16,9 +15,10 @@ var timer
 
 var default_pos_monster
 
+var random_pos_monster
+var count_random = 0
 
 enum STATE {IDLE, RUN, ATTACK, BACK}
-
 enum ALGORITHM {JumpPS, Theta}
 
 
@@ -44,7 +44,7 @@ func _ready():
 	add_child(timer)
 	timer.connect("timeout", self, "find_path_timer")
 	
-	
+	randomize()
 
 func _physics_process(_delta):
 	
@@ -62,9 +62,9 @@ func _physics_process(_delta):
 		STATE.BACK:
 			if path.size() > 0:
 				move_along_path(path)
-
-			if path_plan.gridmap.world_to_map(self.global_transform.origin) == path_plan.gridmap.world_to_map(default_pos_monster):
+			if path_plan.gridmap.world_to_map(self.global_transform.origin) == random_pos_monster:
 				state = STATE.IDLE
+				count_random = 0
 		STATE.ATTACK:
 			if $AnimationPlayer.current_animation != "Attack":
 				$AnimationPlayer.play("Attack")
@@ -101,7 +101,8 @@ func find_path_timer():
 	var target_pos_map 
 	
 	if state == STATE.BACK:
-		target_pos_map = path_plan.gridmap.world_to_map(default_pos_monster)
+		random_pos()
+		target_pos_map = random_pos_monster
 	else : 
 		var target_global_trans = target.global_transform.origin
 		target_global_trans.y = 0
@@ -144,8 +145,12 @@ func _on_change_state():
 	change_state(Autoload.enemy_state)
 
 func _on_update_position():
-
 	var map_pos = Autoload.enemy_pos
 	self.global_transform.origin =  path_plan.gridmap.map_to_world(map_pos.x, map_pos.y, map_pos.z)
 	
 
+func random_pos():
+	if count_random < 1:
+		random_pos_monster = Autoload.cell[randi() % Autoload.cell.size()]
+		count_random += 1
+	

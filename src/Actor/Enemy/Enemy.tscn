@@ -374,7 +374,6 @@ tracks/12/enabled = true
 tracks/12/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1.04167, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
 [sub_resource type="BoxShape" id=7]
-extents = Vector3( 0.153679, 0.108112, 3.26632 )
 
 [sub_resource type="BoxShape" id=8]
 extents = Vector3( 1, 1.61216, 0.714924 )
@@ -469,10 +468,10 @@ anims/Tpose = SubResource( 5 )
 anims/Walk = SubResource( 6 )
 
 [node name="AreaRun" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.55467, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="AreaRun"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14352, -3.0903 )
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="AreaAttack" type="Area" parent="."]
