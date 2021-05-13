@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Tileset/Floor.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://src/Actor/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Game/Level.gd" type="Script" id=3]
 [ext_resource path="res://src/Actor/Enemy/Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/Object/Door/ExitDoor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Tree/Tree.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Font/bahnschrift.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/Testing/AlgorithmTest.gd" type="Script" id=8]
@@ -78,9 +77,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.48628 )
 
 [node name="Tree" parent="GroupObject" instance=ExtResource( 6 )]
 transform = Transform( -0.834829, 0, -0.55051, 0, 1, 0, 0.55051, 0, -0.834829, 20.8857, 0.477263, 30.1249 )
-
-[node name="ExitDoor" parent="GroupObject" instance=ExtResource( 5 )]
-transform = Transform( -3, 0, -9.77524e-07, 0, 3, 0, 9.77524e-07, 0, -3, 10.158, 3.48505, 40.4625 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.997894, -0.0255607, -0.0596146, 0.0648633, 0.393241, 0.917145, 0, -0.91908, 0.394071, 11.8857, 20.0329, 6.44066 )

@@ -1,8 +1,8 @@
 extends Node
 
 
-#var db_path = "user://database.json"
-var db_path = "res://src/Singleton/Database.json"
+var db_path = "user://database.json"
+#var db_path = "res://src/Singleton/Database.json"
 var _file
 var json_data
 
