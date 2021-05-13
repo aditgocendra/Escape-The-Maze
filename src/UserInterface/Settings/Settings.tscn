@@ -3,10 +3,10 @@
 [ext_resource path="res://assets/Font/bahnscrift.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UserInterface/Settings/Settings.gd" type="Script" id=2]
 [ext_resource path="res://assets/Background/Background.png" type="Texture" id=3]
-[ext_resource path="res://assets/Education/PaperBackground.png" type="Texture" id=4]
+[ext_resource path="res://assets/Background/PaperBackground.png" type="Texture" id=4]
 [ext_resource path="res://assets/UserInterface/Button/KembaliBtn.png" type="Texture" id=5]
 [ext_resource path="res://assets/UserInterface/Button/Simpan.png" type="Texture" id=6]
-[ext_resource path="res://assets/Education/Header2.png" type="Texture" id=7]
+[ext_resource path="res://assets/UserInterface/Header/HeaderSetelan.png" type="Texture" id=7]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0

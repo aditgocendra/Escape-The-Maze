@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HeaderPause.png-243edc0a18832a5d78f67941f0ada16b.stex"
+path="res://.import/HeaderPause.png-15cf3b7a5a9209833dda396e02464f04.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Education/HeaderPause.png"
-dest_files=[ "res://.import/HeaderPause.png-243edc0a18832a5d78f67941f0ada16b.stex" ]
+source_file="res://assets/UserInterface/Header/HeaderPause.png"
+dest_files=[ "res://.import/HeaderPause.png-15cf3b7a5a9209833dda396e02464f04.stex" ]
 
 [params]
 

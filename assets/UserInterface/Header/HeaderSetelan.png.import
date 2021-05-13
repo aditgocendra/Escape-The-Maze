@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PaperAksara.png-2ac8f5edd0bea112f79ff645a06a3846.stex"
+path="res://.import/HeaderSetelan.png-17b472b60422e5bc07e195e48e8ccfba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Education/PaperAksara.png"
-dest_files=[ "res://.import/PaperAksara.png-2ac8f5edd0bea112f79ff645a06a3846.stex" ]
+source_file="res://assets/UserInterface/Header/HeaderSetelan.png"
+dest_files=[ "res://.import/HeaderSetelan.png-17b472b60422e5bc07e195e48e8ccfba.stex" ]
 
 [params]
 
