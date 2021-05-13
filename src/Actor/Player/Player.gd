@@ -25,7 +25,7 @@ onready var pause_instance = preload("res://src/UserInterface/Pause/Pause.tscn")
 
 var sprinting = false
 var forward = false
-var solving_puzzle = false
+
 var target
 var is_climb = false
 var state
@@ -45,19 +45,17 @@ func _ready():
 	
 	
 func _input(event):
-	if event is InputEventMouseMotion:
-		if not solving_puzzle: 
-			rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-			head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
-			head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
+#	if event is InputEventMouseMotion:
+#		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
+#		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
+#		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
 	
 	if event is InputEventScreenDrag:
 		if event.index == joystick.ongoing_drag:
 			return 
-		if not solving_puzzle:
-			rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-			head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
-			head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
+		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
+		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
+		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
 	
 	
 	if event.is_action_pressed("climb") and is_climb == false:
@@ -93,7 +91,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_focus_next"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-		if not solving_puzzle and not is_climb and global_transform.origin.y < 2:
+		if not is_climb and global_transform.origin.y < 2:
 			if Input.is_action_pressed("move_forward"):
 				direction -= transform.basis.z
 				forward = true
@@ -141,7 +139,7 @@ func _physics_process(delta):
 func android_controller():
 	var value_joy = joystick.get_value().normalized().rotated(-rotation.y)
 	if state != STATE.DEAD:
-		if not solving_puzzle and not is_climb and global_transform.origin.y < 2:
+		if not is_climb and global_transform.origin.y < 2:
 			direction.z = value_joy.y
 			direction.x = value_joy.x
 			if value_joy.y != 0:
@@ -154,7 +152,7 @@ func on_fade_finish(anim_name):
 	if anim_name == "fade_out_in":
 		camera.environment.dof_blur_far_enabled = true
 		$Fader.hide()
-		solving_puzzle = true
+		
 	
 	if anim_name == "fade_in":
 		$Controller/Objective/ObjectiveAnim.play("play")
