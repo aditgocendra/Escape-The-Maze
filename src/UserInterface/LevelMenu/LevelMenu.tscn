@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/UserInterface/LevelMenu/LevelMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Background/LevelMenuBackground.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/Font/bahnscrift.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/UserInterface/LevelMenu/Level 2 Icon.png" type="Texture" id=6]
 [ext_resource path="res://assets/UserInterface/LevelMenu/Level 3 Icon.png" type="Texture" id=7]
+[ext_resource path="res://assets/UserInterface/Button/KembaliBtn.png" type="Texture" id=8]
 
 [node name="LevelMenu" type="Control"]
 anchor_right = 1.0
@@ -23,6 +24,9 @@ margin_right = 1.0
 margin_bottom = 1.0
 texture = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Header" type="TextureRect" parent="Background"]
 anchor_left = 0.5
@@ -102,6 +106,16 @@ custom_fonts/font = ExtResource( 5 )
 text = "Level 3"
 align = 1
 
+[node name="BackBtn" type="TextureButton" parent="Background"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 36.7277
+margin_top = -87.6565
+margin_right = 165.728
+margin_bottom = -34.6565
+texture_normal = ExtResource( 8 )
+
 [connection signal="pressed" from="Background/HBoxContainer/VBoxContainer/BtnLevel1" to="." method="_on_BtnLevel1_pressed"]
 [connection signal="pressed" from="Background/HBoxContainer/VBoxContainer2/BtnLevel2" to="." method="_on_BtnLevel2_pressed"]
 [connection signal="pressed" from="Background/HBoxContainer/VBoxContainer3/BtnLevel3" to="." method="_on_BtnLevel3_pressed"]
+[connection signal="pressed" from="Background/BackBtn" to="." method="_on_BackBtn_pressed"]
