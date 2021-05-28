@@ -1,9 +1,6 @@
 extends Node
 class_name JPS
 
-
-
-
 var open_list
 var closed_list
 
@@ -65,16 +62,14 @@ func find_path(start, end):
 			
 		identify_succresors(current_node, start_node, end_node)
 	
-	print("not found")
+	
 
 
 func identify_succresors(current, start_node, end_node):
 	var neighbours = JPF.find_neighbours(current)
-#	var successor = []
-#	print("Neighbours :" , neighbours)
 	for index_neighbour in neighbours:
 		var jumpPoint = JPF.jump(index_neighbour, current.tile_pos, end_node)
-#		print("JumpPoint : ", jumpPoint)
+		
 		if jumpPoint:
 			var jx = jumpPoint.x
 			var jz = jumpPoint.z
@@ -91,12 +86,10 @@ func identify_succresors(current, start_node, end_node):
 			
 			if closed:
 				continue
-			#------------------------------------------------------
-			
 			var d
 			if Autoload.heuristic:
 				d = utils.manhattan(abs(jx - current.tile_pos.x), abs(jz - current.tile_pos.z))
-			else: d = utils.euclidean(jumpNode.tile_pos, current.tile_pos)
+			else: d = utils.euclidean(current.tile_pos, jumpNode.tile_pos)
 			var ng  = current.gy + d
 			
 			# check jump node in open list
@@ -106,17 +99,15 @@ func identify_succresors(current, start_node, end_node):
 				if open.tile_pos == jumpNode.tile_pos:
 					opened = true
 					break
-			#----------------------------------------------------
 			
 			if !opened or ng < jumpNode.gy:
-#				print("Open ", opened ," Distance ", ng , " ", jg)
 				jumpNode.gy = ng
-				
 				if Autoload.heuristic:
 					jumpNode.hy = jumpNode.hy or utils.manhattan(abs(jx - end_node.tile_pos.x), abs(jz - end_node.tile_pos.z))
-				else: jumpNode.hy = jumpNode.hy or utils.euclidean(jumpNode.tile_pos, end_node.tile_pos)
+				else: jumpNode.hy = jumpNode.hy or utils.euclidean(end_node.tile_pos, jumpNode.tile_pos)
 				
 				jumpNode.fy = jumpNode.gy + jumpNode.hy
+				
 				jumpNode.parent = current
 				if !opened:
 					open_list.append(jumpNode)

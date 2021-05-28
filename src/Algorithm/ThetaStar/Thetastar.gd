@@ -31,18 +31,14 @@ func find_path(start_index, end_index):
 	start_node = ThetaNode.new()
 	end_node = ThetaNode.new()
 	
-	
 	start_node.tile_pos = start_index
 	end_node.tile_pos = end_index
-	
 	
 	start_node.parent = start_node
 	end_node.parent = null
 	
-	
 	open_list = []
 	closed_list = []
-	
 	
 	open_list.append(start_node)
 	
@@ -69,18 +65,17 @@ func find_path(start_index, end_index):
 		if current_node.tile_pos == end_node.tile_pos:
 			var path = []
 			var current = current_node
-			var cost_node = 0 
+			
+			var cost_node = 0
 			while current.parent.tile_pos != current.tile_pos:
 				path.push_front(current.tile_pos)
 				cost_node += current.f
 				current = current.parent
 			path.push_front(current.tile_pos)
 			
-			
 			var result = []
 			for point in path:
 				var point_map = gridmap.map_to_world(point.x , point.y, point.z)
-#				result.append(Vector3(point_map.x - 1, point_map.y, point_map.z - 1))
 				result.append(point_map)
 			
 			Autoload.path_count = result
@@ -91,8 +86,6 @@ func find_path(start_index, end_index):
 			Autoload.cost_node_count = cost_node
 			return result
 			
-		
-		
 		#get childern node
 		var childern = PoolVector3Array([
 				Vector3(current_node.tile_pos.x + 1, current_node.tile_pos.y, current_node.tile_pos.z),
@@ -104,11 +97,8 @@ func find_path(start_index, end_index):
 				Vector3(current_node.tile_pos.x - 1,current_node.tile_pos.y, current_node.tile_pos.z + 1),
 				Vector3(current_node.tile_pos.x + 1,current_node.tile_pos.y, current_node.tile_pos.z - 1)
 			])
-		
 		#get neighbour
-		
 		var neighbour = []
-#		print(childern)
 		for i in range(childern.size()):
 			if Autoload.cell.has(childern[i]):
 				var new_node = ThetaNode.new()
@@ -116,8 +106,6 @@ func find_path(start_index, end_index):
 				
 				neighbour.append(new_node)
 		
-		
-#		print(neighbour)
 		for node_neighbour in neighbour:
 			var visited = false
 			
@@ -129,11 +117,9 @@ func find_path(start_index, end_index):
 				if open_node.tile_pos == node_neighbour.tile_pos:
 					visited = true
 				
-				
 			if visited == false:
 				node_neighbour.g  = INF
 				node_neighbour.parent = null
-				
 				update_vertex(current_node, node_neighbour)
 				
 				
@@ -157,23 +143,27 @@ func update_vertex(current, neigh):
 func compute_cost(current, neigh):
 	#path 2
 	if line_of_sight(current.parent, neigh):
-		if current.parent.g + utils.euclidean(current.parent.tile_pos, neigh.tile_pos) < neigh.g:
-			neigh.parent = current.parent
-			
-			if Autoload.heuristic: 
+		if Autoload.heuristic:
+			if current.parent.g + utils.manhattan(abs(neigh.tile_pos.x - current.parent.tile_pos.x), abs(neigh.tile_pos.z - current.parent.tile_pos.z) ) < neigh.g:
+				neigh.parent = current.parent 
 				neigh.g = current.parent.g + utils.manhattan(abs(neigh.tile_pos.x - current.parent.tile_pos.x), abs(neigh.tile_pos.z - current.parent.tile_pos.z)) 
-			else: neigh.g = current.parent.g + utils.euclidean(current.parent.tile_pos, neigh.tile_pos)
-	
+		else:
+			if current.parent.g + utils.euclidean(current.parent.tile_pos, neigh.tile_pos) < neigh.g:
+				neigh.parent = current.parent
+				neigh.g = current.parent.g + utils.euclidean(current.parent.tile_pos, neigh.tile_pos) 
 	else:
 		#path 1
-#		print(neigh.tile_pos)
-		if current.g + utils.euclidean(current.tile_pos, neigh.tile_pos) < neigh.g:
-			neigh.parent = current
-			
-			if Autoload.heuristic:
+		if Autoload.heuristic:
+			if current.g + utils.manhattan(abs(neigh.tile_pos.z - current.tile_pos.x), abs(neigh.tile_pos.z - current.tile_pos.z)) < neigh.g:
+				neigh.parent = current
 				neigh.g = current.parent.g + utils.manhattan(abs(neigh.tile_pos.x - current.tile_pos.x), abs(neigh.tile_pos.z - current.tile_pos.z)) 
-			else: neigh.g = current.g + utils.euclidean(current.tile_pos, neigh.tile_pos)
-
+		else:
+			if current.g + utils.euclidean(current.tile_pos, neigh.tile_pos) < neigh.g:
+				neigh.parent = current 
+				neigh.g = current.g + utils.euclidean(current.tile_pos, neigh.tile_pos)
+			
+	
+	
 func line_of_sight(current, neighbour):
 	var current_pos = gridmap.map_to_world(current.tile_pos.x, 0, current.tile_pos.z) 
 	var neighbour_pos = gridmap.map_to_world(neighbour.tile_pos.x, 0, neighbour.tile_pos.z)
@@ -201,7 +191,6 @@ func line_of_sight(current, neighbour):
 		dx = -dx
 		sx = - 0.5
 	else: sx = 0.5
-	
 	
 	if dx >= dz:
 		while x0 != x1:

@@ -45,10 +45,10 @@ func _ready():
 	
 	
 func _input(event):
-#	if event is InputEventMouseMotion:
-#		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-#		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
-#		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
+	if event is InputEventMouseMotion:
+		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
+		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
+		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
 	
 	if event is InputEventScreenDrag:
 		if event.index == joystick.ongoing_drag:
@@ -162,7 +162,7 @@ func on_fade_finish(anim_name):
 		get_tree().change_scene("res://src/UserInterface/MainMenu/3DSceneMenu.tscn")
 	
 	if anim_name == "fade_out":
-		get_tree().change_scene("res://src/UserInterface/MainMenu/3DSceneMenu.tscn")
+		get_tree().change_scene("res://src/UserInterface/LevelMenu/LevelMenu.tscn")
 		$Fader.hide()
 		
 		
