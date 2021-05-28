@@ -103,9 +103,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -305.0
-margin_top = -68.592
+margin_top = -69.0
 margin_right = -37.0
-margin_bottom = 135.408
+margin_bottom = 136.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,10 +116,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -120.0
-margin_top = -85.0
-margin_right = 121.0
-margin_bottom = 90.0
+margin_left = -120.5
+margin_top = -93.0
+margin_right = 120.5
+margin_bottom = 93.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -195,15 +195,39 @@ margin_left = 217.0
 margin_right = 241.0
 margin_bottom = 24.0
 
-[node name="ContainerBtn" type="HBoxContainer" parent="AlgorithmTest/ControlBackground/VBoxContainer"]
+[node name="ContainerFPS" type="HBoxContainer" parent="AlgorithmTest/ControlBackground/VBoxContainer"]
 margin_top = 84.0
 margin_right = 241.0
-margin_bottom = 111.0
+margin_bottom = 108.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="AlgorithmTest/ControlBackground/VBoxContainer/ContainerFPS"]
+margin_top = 1.0
+margin_right = 213.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Frame Per Second"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckFPS" type="CheckBox" parent="AlgorithmTest/ControlBackground/VBoxContainer/ContainerFPS"]
+margin_left = 217.0
+margin_right = 241.0
+margin_bottom = 24.0
+
+[node name="ContainerBtn" type="HBoxContainer" parent="AlgorithmTest/ControlBackground/VBoxContainer"]
+margin_top = 112.0
+margin_right = 241.0
+margin_bottom = 135.0
 size_flags_vertical = 3
 
 [node name="Start" type="Button" parent="AlgorithmTest/ControlBackground/VBoxContainer/ContainerBtn"]
 margin_right = 118.0
-margin_bottom = 27.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Start"
@@ -211,29 +235,29 @@ text = "Start"
 [node name="Stop" type="Button" parent="AlgorithmTest/ControlBackground/VBoxContainer/ContainerBtn"]
 margin_left = 122.0
 margin_right = 241.0
-margin_bottom = 27.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Stop"
 
 [node name="ContainerClear" type="HBoxContainer" parent="AlgorithmTest/ControlBackground/VBoxContainer"]
-margin_top = 115.0
+margin_top = 139.0
 margin_right = 241.0
-margin_bottom = 143.0
+margin_bottom = 162.0
 size_flags_vertical = 3
 
 [node name="Clear" type="Button" parent="AlgorithmTest/ControlBackground/VBoxContainer/ContainerClear"]
 margin_right = 241.0
-margin_bottom = 28.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
 text = "Clear"
 
 [node name="OptionCell" type="OptionButton" parent="AlgorithmTest/ControlBackground/VBoxContainer"]
-margin_top = 147.0
+margin_top = 166.0
 margin_right = 241.0
-margin_bottom = 175.0
+margin_bottom = 186.0
 size_flags_vertical = 3
 
 [node name="HeuristicBackground" type="Panel" parent="AlgorithmTest"]
@@ -242,9 +266,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -302.0
-margin_top = 144.408
+margin_top = 143.441
 margin_right = -38.0
-margin_bottom = 218.408
+margin_bottom = 217.441
 custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -302,9 +326,9 @@ margin_bottom = 24.0
 
 [node name="ResultBackground" type="Panel" parent="AlgorithmTest"]
 margin_left = 28.0
-margin_top = 31.0
+margin_top = 14.0729
 margin_right = 282.0
-margin_bottom = 314.0
+margin_bottom = 267.073
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -392,28 +416,10 @@ margin_bottom = 21.0
 custom_fonts/font = SubResource( 6 )
 text = "0"
 
-[node name="ContainerFPS" type="HBoxContainer" parent="AlgorithmTest/ResultBackground/VBoxContainer"]
+[node name="ContainerMemory" type="HBoxContainer" parent="AlgorithmTest/ResultBackground/VBoxContainer"]
 margin_top = 100.0
 margin_right = 207.0
 margin_bottom = 121.0
-
-[node name="Label" type="Label" parent="AlgorithmTest/ResultBackground/VBoxContainer/ContainerFPS"]
-margin_right = 177.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 6 )
-text = "Frame Per Second :"
-
-[node name="ValueSolution" type="Label" parent="AlgorithmTest/ResultBackground/VBoxContainer/ContainerFPS"]
-margin_left = 181.0
-margin_right = 192.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 6 )
-text = "0"
-
-[node name="ContainerMemory" type="HBoxContainer" parent="AlgorithmTest/ResultBackground/VBoxContainer"]
-margin_top = 125.0
-margin_right = 207.0
-margin_bottom = 146.0
 
 [node name="Label" type="Label" parent="AlgorithmTest/ResultBackground/VBoxContainer/ContainerMemory"]
 margin_right = 145.0
@@ -429,9 +435,9 @@ custom_fonts/font = SubResource( 6 )
 text = "0"
 
 [node name="ContainerCost" type="HBoxContainer" parent="AlgorithmTest/ResultBackground/VBoxContainer"]
-margin_top = 150.0
+margin_top = 125.0
 margin_right = 207.0
-margin_bottom = 171.0
+margin_bottom = 146.0
 
 [node name="Label" type="Label" parent="AlgorithmTest/ResultBackground/VBoxContainer/ContainerCost"]
 margin_right = 102.0
@@ -447,9 +453,9 @@ custom_fonts/font = SubResource( 6 )
 text = "0"
 
 [node name="ContainerPath" type="HBoxContainer" parent="AlgorithmTest/ResultBackground/VBoxContainer"]
-margin_top = 175.0
+margin_top = 150.0
 margin_right = 207.0
-margin_bottom = 196.0
+margin_bottom = 171.0
 
 [node name="Label" type="Label" parent="AlgorithmTest/ResultBackground/VBoxContainer/ContainerPath"]
 margin_right = 51.0
@@ -463,12 +469,86 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -166.0
-margin_top = -88.0
+margin_top = -87.931
 margin_right = -33.0
-margin_bottom = -10.0
+margin_bottom = -6.93097
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ResultFPS" type="Panel" parent="AlgorithmTest"]
+margin_left = 298.0
+margin_top = 14.0
+margin_right = 555.0
+margin_bottom = 108.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AlgorithmTest/ResultFPS"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 23.973
+margin_top = -35.5
+margin_right = 201.973
+margin_bottom = 35.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContainerMin" type="HBoxContainer" parent="AlgorithmTest/ResultFPS/VBoxContainer"]
+margin_right = 178.0
+margin_bottom = 21.0
+
+[node name="Label" type="Label" parent="AlgorithmTest/ResultFPS/VBoxContainer/ContainerMin"]
+margin_right = 137.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "Minimum FPS : "
+
+[node name="ValueMin" type="Label" parent="AlgorithmTest/ResultFPS/VBoxContainer/ContainerMin"]
+margin_left = 141.0
+margin_right = 152.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
+
+[node name="ContainerAVG" type="HBoxContainer" parent="AlgorithmTest/ResultFPS/VBoxContainer"]
+margin_top = 25.0
+margin_right = 178.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="AlgorithmTest/ResultFPS/VBoxContainer/ContainerAVG"]
+margin_right = 131.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "Average FPS : "
+
+[node name="ValueAVG" type="Label" parent="AlgorithmTest/ResultFPS/VBoxContainer/ContainerAVG"]
+margin_left = 135.0
+margin_right = 146.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
+
+[node name="ContainerMax" type="HBoxContainer" parent="AlgorithmTest/ResultFPS/VBoxContainer"]
+margin_top = 50.0
+margin_right = 178.0
+margin_bottom = 71.0
+
+[node name="Label" type="Label" parent="AlgorithmTest/ResultFPS/VBoxContainer/ContainerMax"]
+margin_right = 142.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "Maximum FPS : "
+
+[node name="ValueMax" type="Label" parent="AlgorithmTest/ResultFPS/VBoxContainer/ContainerMax"]
+margin_left = 146.0
+margin_right = 157.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
 
 [node name="ViewportMap" type="ViewportContainer" parent="AlgorithmTest"]
 anchor_left = 1.0
@@ -497,10 +577,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -299.145
-margin_top = -69.1841
-margin_right = -157.145
-margin_bottom = -29.1841
+margin_left = -299.0
+margin_top = -76.6771
+margin_right = -157.0
+margin_bottom = -38.6771
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -546,6 +626,29 @@ margin_bottom = 17.0
 custom_fonts/font = SubResource( 8 )
 text = "( )"
 
+[node name="ContainerTimerFPS" type="HBoxContainer" parent="AlgorithmTest/ContainerPos"]
+margin_top = 42.0
+margin_right = 142.0
+margin_bottom = 59.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="AlgorithmTest/ContainerPos/ContainerTimerFPS"]
+margin_right = 87.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 7 )
+text = "Timer FPS : "
+
+[node name="ValueFPS" type="Label" parent="AlgorithmTest/ContainerPos/ContainerTimerFPS"]
+margin_left = 91.0
+margin_right = 100.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 8 )
+text = "0"
+
+[node name="CountdownFPS" type="Timer" parent="AlgorithmTest"]
+
 [connection signal="pressed" from="AlgorithmTest/ControlBackground/VBoxContainer/ContainerJPS/CheckJPS" to="AlgorithmTest" method="_on_CheckJPS_pressed"]
 [connection signal="pressed" from="AlgorithmTest/ControlBackground/VBoxContainer/ContainerTheta/CheckTheta" to="AlgorithmTest" method="_on_CheckTheta_pressed"]
 [connection signal="pressed" from="AlgorithmTest/ControlBackground/VBoxContainer/ContainerBtn/Start" to="AlgorithmTest" method="_on_Start_pressed"]
@@ -554,3 +657,4 @@ text = "( )"
 [connection signal="item_selected" from="AlgorithmTest/ControlBackground/VBoxContainer/OptionCell" to="AlgorithmTest" method="_on_OptionCell_item_selected"]
 [connection signal="pressed" from="AlgorithmTest/HeuristicBackground/ContainerHeristic/ContainerManhattan/ManhattanCheck" to="AlgorithmTest" method="_on_ManhattanCheck_pressed"]
 [connection signal="pressed" from="AlgorithmTest/HeuristicBackground/ContainerHeristic/ContainerEuclidean/EuclideanCheck" to="AlgorithmTest" method="_on_EuclideanCheck_pressed"]
+[connection signal="timeout" from="AlgorithmTest/CountdownFPS" to="AlgorithmTest" method="_on_CountdownFPS_timeout"]

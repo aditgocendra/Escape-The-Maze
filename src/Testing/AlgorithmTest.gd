@@ -3,8 +3,10 @@ extends Control
 onready var check_JPS = $ControlBackground/VBoxContainer/ContainerJPS/CheckJPS
 onready var check_Theta = $ControlBackground/VBoxContainer/ContainerTheta/CheckTheta
 onready var check_NPC = $ControlBackground/VBoxContainer/ContainerPlay/CheckPlay
+onready var check_FPS = $ControlBackground/VBoxContainer/ContainerFPS/CheckFPS
 onready var check_Manhattan = $HeuristicBackground/ContainerHeristic/ContainerManhattan/ManhattanCheck
 onready var check_Euclidean = $HeuristicBackground/ContainerHeristic/ContainerEuclidean/EuclideanCheck
+
 
 onready var value_PathS = $ResultBackground/VBoxContainer/ContainerPathS/ValueSolution
 onready var value_OpenNode = $ResultBackground/VBoxContainer/ContainerOpenNode/ValueSolution
@@ -12,12 +14,17 @@ onready var value_Time = $ResultBackground/VBoxContainer/ContainerTime/ValueSolu
 onready var value_Memory = $ResultBackground/VBoxContainer/ContainerMemory/ValueSolution
 onready var value_VisitedNode = $ResultBackground/VBoxContainer/ContainerVisitedNode/ValueSolution
 onready var value_CostNode = $ResultBackground/VBoxContainer/ContainerCost/ValueSolution
-onready var value_FPS = $ResultBackground/VBoxContainer/ContainerFPS/ValueSolution
 onready var value_PosPlayer = $ContainerPos/ContainerPosPlayer/ValuePosPlayer
 onready var value_PosEnemy = $ContainerPos/ContainerPosEnemy/ValuePosEnemy
+onready var value_TimerFPS = $ContainerPos/ContainerTimerFPS/ValueFPS
+onready var value_MinFps = $ResultFPS/VBoxContainer/ContainerMin/ValueMin
+onready var value_MaxFps = $ResultFPS/VBoxContainer/ContainerMax/ValueMax
+onready var value_AvgFps = $ResultFPS/VBoxContainer/ContainerAVG/ValueAVG
+
 
 onready var total_path = $ResultBackground/TotalPathS
 onready var option_cell = $ControlBackground/VBoxContainer/OptionCell
+onready var timer_countdown = $CountdownFPS
 
 onready var line3D = get_parent().get_node("LinePath")
 onready var player = get_parent().get_node("Gridmap/Player")
@@ -28,6 +35,9 @@ var path_count
 
 var popup
 var drag_popup = false
+
+var wait_time = 60
+var fps_result = []
 
 func _ready():
 	# connect to autoload file with signal file autoload
@@ -40,13 +50,13 @@ func _ready():
 	
 	enemy.tested_algorithm = true
 	add_item_option_cell()
-	
+	value_TimerFPS.text = str(wait_time)
 	# connect with popup menu for scroll in android
 	popup = option_cell.get_popup()
 	popup.connect("gui_input", self, "_on_popup_input")
 
 func _process(_delta):
-	value_FPS.text = str(Engine.get_frames_per_second())
+	
 	value_PosPlayer.text = str(get_pos_cell(player.global_transform.origin))
 	value_PosEnemy.text = str(get_pos_cell(enemy.global_transform.origin))
 
@@ -123,6 +133,8 @@ func _on_Start_pressed():
 		if check_NPC.pressed:
 			enemy.state = 1
 			enemy.timer.start()
+			if check_FPS:
+				timer_countdown.start()
 		else:
 			enemy.state = 0
 			enemy.find_path_timer()
@@ -134,9 +146,12 @@ func _on_Stop_pressed():
 	check_Theta.pressed  = false
 	check_JPS.pressed  = false
 	check_NPC.pressed  = false
+	check_FPS.pressed = false
+	timer_countdown.stop()
+	wait_time = 60
+	value_TimerFPS.text = str(wait_time)
 	
-
-
+	
 func _on_Clear_pressed():
 	if !check_JPS.pressed or !check_Theta.pressed:
 		Autoload.path_count = []
@@ -145,17 +160,49 @@ func _on_Clear_pressed():
 		Autoload.time_usage_count = 0
 		Autoload.closed_node_count = 0
 		Autoload.cost_node_count = 0
+		
+		value_MaxFps.text = str(0)
+		value_MinFps.text = str(0)
+		value_AvgFps.text = str(0)
 		line3D.clear_sphere()
-
-
+		
+		
 func _on_OptionCell_item_selected(index):
 	if drag_popup == false:
 		Autoload.enemy_pos = Autoload.cell[index]
-
-
+		
+		
 func _on_ManhattanCheck_pressed():
 	check_Euclidean.pressed = false
-
-
+		
+		
 func _on_EuclideanCheck_pressed():
 	check_Manhattan.pressed = false
+		
+		
+func _on_CountdownFPS_timeout():
+	if wait_time > 0:
+		wait_time -= 1
+		fps_result.append(Engine.get_frames_per_second())
+		value_TimerFPS.text = str(wait_time)
+	else: 
+		calculate_fps()
+		timer_countdown.stop()
+		wait_time = 60
+		value_TimerFPS.text = str(wait_time)
+		check_FPS.pressed = false
+
+func calculate_fps():
+	var min_fps = fps_result.min()
+	var max_fps = fps_result.max()
+	var avg_fps : float
+	
+	for i in range(fps_result.size()):
+		avg_fps += fps_result[i] 
+	
+	avg_fps = avg_fps / fps_result.size()
+	
+	value_MinFps.text = str(min_fps)
+	value_MaxFps.text = str(max_fps)
+	value_AvgFps.text = str(avg_fps)
+
