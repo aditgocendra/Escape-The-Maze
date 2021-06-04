@@ -3,19 +3,19 @@
 [ext_resource path="res://assets/Floor/cobblestone_floor_07_diff_1k.jpg" type="Texture" id=1]
 [ext_resource path="res://assets/Wall/plaster_brick_01_diff_1k.jpg" type="Texture" id=2]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="PlaneMesh" id=4]
-material = SubResource( 3 )
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
 
-[sub_resource type="ConcavePolygonShape" id=5]
+[sub_resource type="ConcavePolygonShape" id=3]
 data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 2 )
 
-[sub_resource type="ArrayMesh" id=7]
+[sub_resource type="ArrayMesh" id=5]
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2.00001, 1e-05, 2 ),
 "array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 56, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 48, 0, 56, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 52, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 48, 0, 52 ),
@@ -35,34 +35,34 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": SubResource( 6 ),
+"material": SubResource( 4 ),
 "name": "TextureWall",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 20
 }
 
-[sub_resource type="ConcavePolygonShape" id=8]
+[sub_resource type="ConcavePolygonShape" id=6]
 data = PoolVector3Array( 1, 0, -1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0, -1, -1, 0, 1, -1, 5, 1, -1, 0, 1, -1, 5, -1, -1, 5, -1, -1, 0, 1, -1, 0, -1, -1, 5, -1, -1, 0, -1, 1, 5, -1, 1, 5, -1, -1, 0, -1, 1, 0, -1, 1, 5, 1, 1, 0, 1, -1, 5, 1, -1, 5, 1, 1, 0, 1, -1, 0, 1, 1, 5, -1, 1, 0, -1, 1, 5, 1, 1, 5, 1, 1, 0, -1, 1, 0, 1, -1, 5, -1, 1, 5, -1, -1, 5, 1, -1, 5, 1, 1, 5, -1, 1, 5, 1 )
 
 [node name="Floor" type="Spatial"]
 
 [node name="Floor" type="MeshInstance" parent="."]
-mesh = SubResource( 4 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Floor"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Wall1" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, 0 )
-mesh = SubResource( 7 )
+mesh = SubResource( 5 )
 material/0 = null
 material/1 = null
 
 [node name="StaticBody" type="StaticBody" parent="Wall1"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall1/StaticBody"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )

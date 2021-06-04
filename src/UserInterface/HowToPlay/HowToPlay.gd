@@ -6,8 +6,6 @@ onready var paper_hint = $Background/PaperHint
 var counter = 0
 
 
-
-
 func change_tutor():
 	if counter == 1:
 		background.texture = load("res://assets/UserInterface/HowPlay/Enemy.png")
@@ -20,12 +18,16 @@ func change_tutor():
 		paper_hint.texture = load("res://assets/UserInterface/HowPlay/ExitPaper.png")
 		
 func _on_Next_pressed():
+	if Autoload.play_sound():
+		$ButtonClick.play()
 	if counter != 2:
 		counter += 1
 		$AnimationPlayer.play("change_hint")
 
 
 func _on_Back_pressed():
+	if Autoload.play_sound():
+		$ButtonClick.play()
 	if counter != 0:
 		counter -= 1
 		$AnimationPlayer.play("change_hint")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/UserInterface/LevelMenu/LevelMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Background/LevelMenuBackground.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/UserInterface/LevelMenu/Level 2 Icon.png" type="Texture" id=6]
 [ext_resource path="res://assets/UserInterface/LevelMenu/Level 3 Icon.png" type="Texture" id=7]
 [ext_resource path="res://assets/UserInterface/Button/KembaliBtn.png" type="Texture" id=8]
+[ext_resource path="res://src/UserInterface/Transition/Fader.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Sounds/ButtonClick.wav" type="AudioStream" id=10]
 
 [node name="LevelMenu" type="Control"]
 anchor_right = 1.0
@@ -17,7 +19,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Fader" parent="." instance=ExtResource( 9 )]
+
 [node name="Background" type="TextureRect" parent="."]
+show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1.0
@@ -114,6 +119,9 @@ margin_top = -87.6565
 margin_right = 165.728
 margin_bottom = -34.6565
 texture_normal = ExtResource( 8 )
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 
 [connection signal="pressed" from="Background/HBoxContainer/VBoxContainer/BtnLevel1" to="." method="_on_BtnLevel1_pressed"]
 [connection signal="pressed" from="Background/HBoxContainer/VBoxContainer2/BtnLevel2" to="." method="_on_BtnLevel2_pressed"]

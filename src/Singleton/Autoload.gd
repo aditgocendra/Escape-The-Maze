@@ -69,6 +69,13 @@ func get_neighbours(node):
 	return neighbours
 
 
+func play_sound() -> bool:
+	var sound =  Database.loadData()
+	sound = sound["game"]["settings"]["sound"]
+	if sound:
+		return true
+	else: return false
+
 func change_state(new_state):
 	enemy_state = new_state
 	emit_signal("enemy_change_state")

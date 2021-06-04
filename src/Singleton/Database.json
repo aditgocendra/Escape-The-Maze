@@ -1,8 +1,1 @@
-{
-  "game": {
-    "settings": {
-      "sensitivity": 0.14,
-      "sound": false
-    }
-  }
-}
+{"game":{"settings":{"sensitivity":0.14,"sound":false}}}

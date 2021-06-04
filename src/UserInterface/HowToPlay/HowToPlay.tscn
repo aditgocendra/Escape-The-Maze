@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/UserInterface/HowPlay/Exit.png" type="Texture" id=1]
 [ext_resource path="res://assets/UserInterface/HowPlay/Header3.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/UserInterface/Button/KembaliBtn.png" type="Texture" id=5]
 [ext_resource path="res://assets/UserInterface/Button/MenuUtamaBtn.png" type="Texture" id=6]
 [ext_resource path="res://src/UserInterface/HowToPlay/HowToPlay.gd" type="Script" id=7]
+[ext_resource path="res://assets/Sounds/ButtonClick.wav" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "change_hint"
@@ -187,6 +188,9 @@ texture_normal = ExtResource( 4 )
 autoplay = "start"
 anims/change_hint = SubResource( 1 )
 anims/start = SubResource( 2 )
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 
 [connection signal="pressed" from="HBoxContainer/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

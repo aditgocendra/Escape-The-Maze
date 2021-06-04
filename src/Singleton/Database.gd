@@ -1,8 +1,8 @@
 extends Node
 
 
-var db_path = "user://database.json"
-#var db_path = "res://src/Singleton/Database.json"
+#var db_path = "user://database.json"
+var db_path = "res://src/Singleton/Database.json"
 var _file
 var json_data
 
@@ -37,3 +37,6 @@ func save_data(new_data):
 	_file.open(db_path, File.WRITE)
 	_file.store_line(to_json(new_data))
 	_file.close()
+
+
+

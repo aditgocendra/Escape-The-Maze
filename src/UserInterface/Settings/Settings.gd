@@ -2,10 +2,14 @@ extends Control
 
 onready var slider_sensi = $Background/Paper/VBoxContainer/ContainerSensi/HSlider
 onready var check_sound = $Background/Paper/VBoxContainer/ContainerSound/CheckBox
+onready var fader = $Fader
 
 var data
+var next_scene : String = ""
+
 
 func _ready():
+	fader.connect("fade_finish", self, "on_fade_finish")
 	data = Database.loadData()
 	set_settings()
 	
@@ -33,12 +37,24 @@ func _on_CheckBox_pressed():
 
 
 func _on_Apply_pressed():
+	if Autoload.play_sound():
+		$ButtonClick.play()
 	data["game"]["settings"]["sensitivity"] = slider_sensi.value
 	data["game"]["settings"]["sound"] = check_sound.pressed
 	
 	Database.save_data(data)
-	get_tree().change_scene("res://src/UserInterface/MainMenu/3DSceneMenu.tscn")
+	next_scene = "res://src/UserInterface/MainMenu/3DSceneMenu.tscn"
+	fader._fade_out()
 	
 	
 func _on_Back_pressed():
-	get_tree().change_scene("res://src/UserInterface/MainMenu/3DSceneMenu.tscn")
+	if Autoload.play_sound():
+		$ButtonClick.play()
+	next_scene = "res://src/UserInterface/MainMenu/3DSceneMenu.tscn"
+	fader._fade_out()
+
+
+func on_fade_finish(anim):
+	if anim == "fade_out":
+		get_tree().change_scene(next_scene)
+

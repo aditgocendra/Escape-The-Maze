@@ -12,6 +12,8 @@ func _fade_in():
 func _fade_out():
 	$AnimationPlayer.play("fade_out")
 
+func _trans_main_menu():
+	$AnimationPlayer.play("trans_main_menu")
 
 func _fade_out_in():
 	$AnimationPlayer.play("fade_out_in")
@@ -34,6 +36,3 @@ func _on_AnimationPlayer_animation_started(anim_name):
 
 
 
-
-func _on_HowToPlay_pressed():
-	get_tree().change_scene("res://src/UserInterface/HowToPlay/HowToPlay.tscn")
